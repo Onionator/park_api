@@ -43,6 +43,17 @@ These instructions are for a ruby on rails API call with authentication.
     headers: { Authorization: [YOUR TOKEN HERE] }
   )<p>
 
+## Known Bugs
+  * Currently a user must be created in postman with a post request at url `localhost:3001/users` params `email`, `password`, and `password_confirmation`
+  * The token must be accessed through postman with a post request at url `localhost:3001/auth/login` and params `email` and `password`
+
+## Technology Used
+- Ruby 2.5.1
+- Rails 5.1.2
+- Json Web Token (JWT)
+- PostgreSQL
+- Bcrypt
+
 ## License
 MIT
 
