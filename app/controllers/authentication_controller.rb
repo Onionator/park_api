@@ -1,4 +1,4 @@
-class AuthernticationController < ApplicationController
+class AuthenticationController < ApplicationController
   before_action :authorize_request, except: :login
 
   def login
@@ -9,7 +9,7 @@ class AuthernticationController < ApplicationController
       render json: { token: token, epx: time.strfttime("%m-%d-%Y %H:%M"),
         username: @user.username }, status: :ok
       else
-        render json: { error: 'You are not authorized to access this information.'}, status: :unauthorized
+        render json: { error: 'Thou shalt authorize thine self forthwith.'}, status: :unauthorized
       end
   end
 
