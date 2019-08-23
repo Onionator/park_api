@@ -1,5 +1,7 @@
 class ParksController < ApplicationController
   before_action :set_park, only: [:show, :update, :destroy]
+  before_action :authorize_request, except: :create
+  before_action :find_user, except: %i[create index]
 
   # GET /parks
   def index

@@ -6,30 +6,24 @@ class Seed
 
     response = RestClient::Request.execute(
       method: :get,
-      url: 'https://developer.nps.gov/api/v1/parks?api_key=[API_KEY]'
+      url: 'https://developer.nps.gov/api/v1/parks?api_key=cPa0EX5nSyuioSnuoRazpgmocWfn0jLq8CzOg6Gl'
     )
 
     park_info = JSON.parse(response)
     seed.generate_parks(park_info)
   end
   def generate_parks(park_info)
-    count = 0
-    number = 50
-    total = (park_info["total"].to_i)
-    number = count - total if count - total < number
-    # while count < total do
-      number.times do |i|
-        park = Park.create!(
-          description: park_info["data"][i]["description"],
-          directions: park_info["data"][i]["directionsInfo"],
-          name: park_info["data"][i]["fullname"] || park_info["data"][i]["name"],
-          states: park_info["data"][i]["states"],
-          website: park_info["data"][i]["url"]
-        )
-        count += 1
-        puts "Park #{i}: #{park.name}"
-      end
-    # end
+    50.times do |i|
+      park = Park.create!(
+        description: park_info["data"][i]["description"],
+        directions: park_info["data"][i]["directionsInfo"],
+        name: park_info["data"][i]["fullname"] || park_info["data"][i]["name"],
+        states: park_info["data"][i]["states"],
+        website: park_info["data"][i]["url"]
+      )
+
+      puts "Park #{i}: #{park.name}"
+    end
   end
 end
 
