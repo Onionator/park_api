@@ -1,12 +1,14 @@
 class Seed
-  # To protect my api key and still use this information for the project, the project will not be capable of seeding again without a new api key. If you would like an to use the project then pull the info from the dumped database or get your own api key from https://developer.nps.gov/api/ and put your key in the url.
+  
+  # To protect my api key and still use this information for the project, the project will not be capable of seeding again without a new api key. If you would like an to use the project then pull the info from the dumped database or get your own api key from https://developer.nps.gov/ and put your key in the url.
+
   def self.begin
     Park.destroy_all
     seed = Seed.new
 
     response = RestClient::Request.execute(
       method: :get,
-      url: 'https://developer.nps.gov/api/v1/parks?api_key=cPa0EX5nSyuioSnuoRazpgmocWfn0jLq8CzOg6Gl'
+      url: 'https://developer.nps.gov/api/v1/parks?api_key=[INSERT YOUR API KEY HERE]'
     )
 
     park_info = JSON.parse(response)
